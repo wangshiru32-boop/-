@@ -1,0 +1,26 @@
+工作区已经使用 colcon 编译过，环境是 ROS 2 Jazzy，并且已经安装了 turtlesim。请在两个终端中分别运行：
+
+**终端 1：启动 turtlesim 仿真**
+
+```bash
+source /opt/ros/jazzy/setup.bash
+ros2 run turtlesim turtlesim_node
+```
+
+**终端 2：运行你的控制节点 [turtle_ctrl_node.py](file:///home/wangshiru/dev_ws/src/turtle_pkg/turtle_pkg/turtle_ctrl_node.py)**
+
+```bash
+source /opt/ros/jazzy/setup.bash
+source /home/wangshiru/dev_ws/install/setup.bash
+ros2 run turtle_pkg turtle_ctrl_node
+```
+
+小海龟会以 `linear.x=2.0`、`angular.z=1.0` 的线速度和角速度每隔 0.5 秒做圆周运动。如果想按方向键手动控制小海龟，可以把终端 1 的命令换成 `ros2 run turtlesim turtle_teleop_key`。
+
+如果之后修改了代码，需要先在工作区根目录重新编译：
+
+```bash
+cd /home/wangshiru/dev_ws
+colcon build --packages-select turtle_pkg
+source install/setup.bash
+```
